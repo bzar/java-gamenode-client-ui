@@ -1,0 +1,3 @@
+[submodule "lib/java-gamenode-client"]
+	path = lib/java-gamenode-client
+	url = git://github.com/bzar/java-gamenode-client.git

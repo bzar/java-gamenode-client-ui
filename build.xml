@@ -1,0 +1,29 @@
+<project>
+    <target name="clean">
+        <ant dir="lib/java-gamenode-client" target="clean" />
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes/lib"/>
+        <ant dir="lib/java-gamenode-client" target="compile" />
+        <copy todir="build/classes">
+            <fileset dir="lib/java-gamenode-client/build/classes" includes="**/*.class"/>
+        </copy>
+        <javac srcdir="src" destdir="build/classes"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/java-gamenode-client-ui.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="fi.iki.bzar.GamenodeClientUI"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="build/jar/java-gamenode-client-ui.jar" fork="true"/>
+    </target>
+
+</project>
